@@ -1,4 +1,2 @@
-{-# LANGUAGE CPP #-}
-#define MODULE_NAME     Posix
-#define IS_WINDOWS      False
-#include "Internal.hs"
+module System.FilePath.Posix(module System.FilePath.Internal) where
+import System.FilePath.Internal

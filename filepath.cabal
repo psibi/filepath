@@ -36,9 +36,11 @@ source-repository head
 
 library
     default-language: Haskell2010
+    java-sources: java/Utils.java
     other-extensions:
         CPP
         PatternGuards
+        ForeignFunctionInterface
     if impl(GHC >= 7.2)
         other-extensions: Safe
 
@@ -46,6 +48,7 @@ library
         System.FilePath
         System.FilePath.Posix
         System.FilePath.Windows
+        System.FilePath.Internal
 
     build-depends:
         base >= 4 && < 4.11

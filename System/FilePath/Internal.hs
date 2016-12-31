@@ -1,6 +1,4 @@
-#if __GLASGOW_HASKELL__ >= 704
-{-# LANGUAGE Safe #-}
-#endif
+{-# LANGUAGE CPP, ForeignFunctionInterface #-}
 {-# LANGUAGE PatternGuards #-}
 
 -- This template expects CPP definitions for:
@@ -8,7 +6,7 @@
 --     IS_WINDOWS  = False | True
 
 -- |
--- Module      :  System.FilePath.MODULE_NAME
+-- Module      :  System.FilePath.Internal
 -- Copyright   :  (c) Neil Mitchell 2005-2014
 -- License     :  BSD3
 --
@@ -61,7 +59,7 @@
 --
 -- References:
 -- [1] <http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247.aspx Naming Files, Paths and Namespaces> (Microsoft MSDN)
-module System.FilePath.MODULE_NAME
+module System.FilePath.Internal
     (
     -- * Separator predicates
     FilePath,
@@ -125,8 +123,7 @@ isPosix :: Bool
 isPosix = not isWindows
 
 -- | Is the operating system Windows like
-isWindows :: Bool
-isWindows = IS_WINDOWS
+foreign import java unsafe "@static eta.filepath.Utils.isWindows" isWindows :: Bool
 
 
 ---------------------------------------------------------------------
